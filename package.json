@@ -5,7 +5,8 @@
   "main": "src/index.html",
   "scripts": {
     "test": "test",
-    "babel": "babel src/modules -d dist/modules --source-maps"
+    "babel": "babel src/modules -d dist/modules --source-maps",
+    "install": "yarn run babel && node install.js"
   },
   "repository": {
     "type": "git",

@@ -1,5 +1,5 @@
-import { errorMessages } from './messages.js';
-import { validation } from './validation.js';
+import errorMessages from './messages.js';
+import validator from './validator.js';
 
 const defaults = {
     errorClass: 'error',
@@ -17,7 +17,7 @@ const defaults = {
 export default (form, settings) => {
     const options = Object.assign({}, defaults, settings );
     const validaitonObject = Object.assign(
-        Object.create(validation),
+        Object.create(validator),
         { form, options }
     );
     return validaitonObject.init();

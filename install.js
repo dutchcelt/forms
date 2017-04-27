@@ -29,7 +29,7 @@ files.forEach(file => {
 });
 
 
-ncp(systemjs, setPath(dist, 'systemjs'), err => {
+systemjs && ncp(systemjs, setPath(dist, 'systemjs'), err => {
     if (err) return console.error(err);
     console.log('systemjs!');
 });

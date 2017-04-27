@@ -1,5 +1,5 @@
 
-export const errorMessages = elem => ({
+export default elem => ({
     "badInput": `browser is unable to convert`,
     "customError": elem.dataset.errorMessage || `This field is incorrect.`,
     "patternMismatch": `value does not match the specified pattern`,

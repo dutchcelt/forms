@@ -1,13 +1,13 @@
-import {
-    createMap,
-    setObject,
-    getKey,
-    getElementFromField,
-    renderFieldMessage,
-    clearFieldMessage
-} from './helpers.js';
 
-const validation = {
+import createMap            from './helpers/createMap.js';
+import setObject            from './helpers/setObject.js';
+import getKey               from './helpers/getKey.js';
+import getElementFromField  from './helpers/getElementFromField.js';
+import renderFieldMessage   from './helpers/renderFieldMessage.js';
+import clearFieldMessage    from './helpers/clearFieldMessage.js';
+
+
+export default {
 
     init() {
 
@@ -47,9 +47,8 @@ const validation = {
 
 
     updateMap(field) {
-        setObject(field, this.options).then( values => {
-            this.elementsMap.set(field, values);
-    });
+        const values = setObject(field, this.options);
+        this.elementsMap.set(field, values);
         return this;
     },
 
@@ -74,5 +73,3 @@ const validation = {
     }
 
 };
-
-export { validation };

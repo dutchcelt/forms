@@ -46,8 +46,7 @@ export default {
 
 
 	updateMap(field) {
-		const values = setObject(field, this.options);
-		this.elementsMap.set(field, values);
+		this.elementsMap.set(field, setObject(field, this.options));
 		return this;
 	},
 

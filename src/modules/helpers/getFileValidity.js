@@ -1,4 +1,4 @@
-export default (elem, messages) => {
+export default (elem, options) => {
 	elem.setCustomValidity("");
 
 	const files = elem.files;
@@ -13,6 +13,7 @@ export default (elem, messages) => {
 
 	if (!isValid) {
 		elem.dataset.uploadSize = `of ${uploadSize}KB`;
+		const messages = options.errorMessages(elem);
 		elem.dataset.errorMessage = `${!validSize ? messages.sizeMessage : ''} ${!validType ? messages.typeMessage : ''}`;
 		elem.setCustomValidity('error');
 	}

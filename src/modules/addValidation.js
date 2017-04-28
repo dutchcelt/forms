@@ -2,9 +2,9 @@ import errorMessages from './messages.js';
 import validator from './validator.js';
 
 const defaults = {
-    errorClass: 'error',
-    parentElementSelector: 'fieldset > *',
-    errorMessages
+	errorClass: 'error',
+	parentElementSelector: 'fieldset > *',
+	errorMessages
 };
 
 
@@ -15,10 +15,10 @@ const defaults = {
  * @returns {*}
  */
 export default (form, settings) => {
-    const options = Object.assign({}, defaults, settings );
-    const validaitonObject = Object.assign(
-        Object.create(validator),
-        { form, options }
-    );
-    return validaitonObject.init();
+	const options = Object.assign({}, defaults, settings);
+	const validaitonObject = Object.assign(
+		Object.create(validator),
+		{form, options}
+	);
+	return validaitonObject.init();
 };

@@ -1,20 +1,20 @@
 export default (elem, messages) => {
-    elem.setCustomValidity("");
+	elem.setCustomValidity("");
 
-    const files = elem.files;
-    if (!files || !files.length) return elem.validity.valid;
+	const files = elem.files;
+	if (!files || !files.length) return elem.validity.valid;
 
-    const allowedExtensions = elem.dataset.allowedExtensions;
-    const maxSize = elem.dataset.maxSize;
-    const uploadSize = [...files].reduce( (a, f) => a + Math.ceil(f.size/1024), 0);
-    const validSize = maxSize ? uploadSize <= parseInt(maxSize) : true;
-    const validType = allowedExtensions ? [...files].every(f => (new RegExp(f.name.split(/\./).pop(),'gi')).test(allowedExtensions)) : true;
-    const isValid = [validSize, validType, elem.validity.valid].every(v => v);
+	const allowedExtensions = elem.dataset.allowedExtensions;
+	const maxSize = elem.dataset.maxSize;
+	const uploadSize = [...files].reduce((a, f) => a + Math.ceil(f.size / 1024), 0);
+	const validSize = maxSize ? uploadSize <= parseInt(maxSize) : true;
+	const validType = allowedExtensions ? [...files].every(f => (new RegExp(f.name.split(/\./).pop(), 'gi')).test(allowedExtensions)) : true;
+	const isValid = [validSize, validType, elem.validity.valid].every(v => v);
 
-    if(!isValid) {
-        elem.dataset.uploadSize = `of ${uploadSize}KB`;
-        elem.dataset.errorMessage = `${!validSize ? messages.sizeMessage : ''} ${!validType ? messages.typeMessage : ''}`;
-        elem.setCustomValidity('error');
-    }
-    return isValid;
+	if (!isValid) {
+		elem.dataset.uploadSize = `of ${uploadSize}KB`;
+		elem.dataset.errorMessage = `${!validSize ? messages.sizeMessage : ''} ${!validType ? messages.typeMessage : ''}`;
+		elem.setCustomValidity('error');
+	}
+	return isValid;
 }

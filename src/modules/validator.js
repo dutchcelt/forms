@@ -1,18 +1,15 @@
-import createMap            from './helpers/createMap.js';
-import setObject            from './helpers/setObject.js';
-import getKey               from './helpers/getKey.js';
-import getElementFromField  from './helpers/getElementFromField.js';
-import renderFieldMessage   from './helpers/renderFieldMessage.js';
-import clearFieldMessage    from './helpers/clearFieldMessage.js';
-
+import createMap from './helpers/createMap.js';
+import setObject from './helpers/setObject.js';
+import getKey from './helpers/getKey.js';
+import getElementFromField from './helpers/getElementFromField.js';
+import renderFieldMessage from './helpers/renderFieldMessage.js';
+import clearFieldMessage from './helpers/clearFieldMessage.js';
 
 export default {
 
 	init() {
-
-		this.elementsMap = createMap(this.form, this.options);
+		this.elementsMap = createMap(this.form);
 		this.isFormValid = true;
-
 		this.form.addEventListener('input', this);
 		this.form.addEventListener('blur', this);
 		this.form.addEventListener('change', this);
@@ -46,7 +43,7 @@ export default {
 
 
 	updateMap(field) {
-		this.elementsMap.set(field, setObject(field, this.options));
+		this.elementsMap.set(field, setObject(field));
 		return this;
 	},
 

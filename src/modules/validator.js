@@ -45,7 +45,7 @@ export default {
 
 	updateMap(field) {
 		this.elementsMap.set(field, setObject(field));
-		return this;
+		return this.elementsMap.get(field);
 	},
 
 	setFormValidation(){
@@ -56,7 +56,7 @@ export default {
 	},
 
 	setFieldValidation(field){
-		const fieldData = this.elementsMap.get(field);
+		const fieldData = this.updateMap(field);
 		const target = getElementFromField(field);
 		if (fieldData.valid) {
 			target.classList.remove(config.errorClass);
@@ -65,7 +65,6 @@ export default {
 			target.classList.add(config.errorClass);
 			renderFieldMessage(fieldData);
 		}
-		this.updateMap(field);
 		return this;
 	}
 

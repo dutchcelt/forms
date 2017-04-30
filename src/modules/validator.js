@@ -1,10 +1,11 @@
+import config from './config.js';
 import createMap from './helpers/createMap.js';
 import setObject from './helpers/setObject.js';
 import getKey from './helpers/getKey.js';
 import getElementFromField from './helpers/getElementFromField.js';
 import renderFieldMessage from './helpers/renderFieldMessage.js';
 import clearFieldMessage from './helpers/clearFieldMessage.js';
-import config from './config.js';
+import hasUserInput from './helpers/hasUserInput.js';
 
 export default {
 
@@ -15,6 +16,7 @@ export default {
 		this.form.addEventListener('blur', this);
 		this.form.addEventListener('change', this);
 		this.form.addEventListener('submit', this);
+		if (config.observe) this.liveMap(this.form);
 	},
 
 	handleEvent(event) {
@@ -66,6 +68,18 @@ export default {
 			renderFieldMessage(fieldData);
 		}
 		return this;
+	},
+
+	liveMap() {
+
+		const observer = new MutationObserver(mutations => {
+			mutations.forEach(mutation => {
+				[...mutation.addedNodes].filter(e => hasUserInput(e)).forEach(e => {
+					this.updateMap(this.form[getKey(e)]);
+				});
+			});
+		});
+		observer.observe(this.form, {childList: true, subtree: true});
 	}
 
 };

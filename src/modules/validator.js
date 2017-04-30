@@ -5,7 +5,7 @@ import getKey from './helpers/getKey.js';
 import getElementFromField from './helpers/getElementFromField.js';
 import renderFieldMessage from './helpers/renderFieldMessage.js';
 import clearFieldMessage from './helpers/clearFieldMessage.js';
-import hasUserInput from './helpers/hasUserInput.js';
+import throttle from './lib/throttleEvent.js';
 
 export default {
 
@@ -16,7 +16,9 @@ export default {
 		this.form.addEventListener('blur', this);
 		this.form.addEventListener('change', this);
 		this.form.addEventListener('submit', this);
-		if (config.observe) this.liveMap(this.form);
+		this.form.addEventListener('focus', this, true);
+
+		if (config.observe) this.liveMap();
 	},
 
 	handleEvent(event) {
@@ -71,13 +73,14 @@ export default {
 	},
 
 	liveMap() {
-
-		const observer = new MutationObserver(mutations => {
-			mutations.forEach(mutation => {
-				[...mutation.addedNodes].filter(e => hasUserInput(e)).forEach(e => {
-					this.updateMap(this.form[getKey(e)]);
-				});
-			});
+		let numberOfElements = [...this.elementsMap].length;
+		const observer = new MutationObserver(() => {
+			if (numberOfElements !== [...this.elementsMap].length) {
+				throttle(() => {
+					this.elementsMap = createMap(this.form);
+					numberOfElements = [...this.elementsMap].length;
+				}, 300, this);
+			}
 		});
 		observer.observe(this.form, {childList: true, subtree: true});
 	}

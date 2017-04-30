@@ -18,4 +18,3 @@ SystemJS.onload = addValidation;
 SystemJS.onerror = () => {
     console.error("Can't load SystemJS ");
 };
-

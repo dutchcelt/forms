@@ -7,11 +7,10 @@ import validator from './validator.js';
  * @param {object} settings
  * @returns {*}
  */
-export default (form, settings) => {
-	const options = Object.assign({}, config, settings);
+export default (form) => {
 	const validaitonObject = Object.assign(
 		Object.create(validator),
-		{form, options}
+		{form, config}
 	);
 	return validaitonObject.init();
 };

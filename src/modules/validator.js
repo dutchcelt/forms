@@ -4,6 +4,7 @@ import getKey from './helpers/getKey.js';
 import getElementFromField from './helpers/getElementFromField.js';
 import renderFieldMessage from './helpers/renderFieldMessage.js';
 import clearFieldMessage from './helpers/clearFieldMessage.js';
+import config from './config.js';
 
 export default {
 
@@ -23,7 +24,7 @@ export default {
 			this.validateForm();
 		} else if ((/change|blur|input/i).test(event.type)) {
 			const field = this.form[getKey(event.target)];
-			this.updateMap(field).validate(field);
+			this.validate(field);
 
 		}
 	},
@@ -49,8 +50,8 @@ export default {
 
 	setFormValidation(){
 		this.isFormValid
-			? this.form.classList.remove(this.options.errorClass)
-			: this.form.classList.add(this.options.errorClass);
+			? this.form.classList.remove(config.errorClass)
+			: this.form.classList.add(config.errorClass);
 		return this;
 	},
 
@@ -58,12 +59,13 @@ export default {
 		const fieldData = this.elementsMap.get(field);
 		const target = getElementFromField(field);
 		if (fieldData.valid) {
-			target.classList.remove(this.options.errorClass);
+			target.classList.remove(config.errorClass);
 			clearFieldMessage(fieldData);
 		} else {
-			target.classList.add(this.options.errorClass);
+			target.classList.add(config.errorClass);
 			renderFieldMessage(fieldData);
 		}
+		this.updateMap(field);
 		return this;
 	}
 

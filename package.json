@@ -1,45 +1,46 @@
 {
-  "name": "forms",
-  "version": "1.0.0",
-  "description": "Create, layout and validate HTML5 forms",
-  "main": "src/index.html",
-  "scripts": {
-    "test": "test",
-    "lint": "eslint src/modules/**",
-    "babel": "babel src -d dist --source-maps",
-    "install": "yarn run babel && node install.js",
-    "develop": "yarn run lint && yarn run install && http-server dist -a localhost -p 9000 --ssl --cors -s"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dutchcelt/forms.git"
-  },
-  "keywords": [
-    "Forms",
-    "HTML5",
-    "validaiton",
-    "layout",
-    "templating"
-  ],
-  "author": "C. Egor Kloos",
-  "license": "SEE LICENSE IN LICENSE.md",
-  "bugs": {
-    "url": "https://github.com/dutchcelt/forms/issues"
-  },
-  "homepage": "https://github.com/dutchcelt/forms#readme",
-  "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-eslint": "^7.2.3",
-    "babel-plugin-transform-es2015-modules-systemjs": "^6.24.1",
-    "babel-preset-env": "^1.4.0",
-    "babel-preset-es2015": "^6.24.1",
-    "babili": "^0.0.12",
-    "eslint": "^3.19.0",
-    "eslint-plugin-babel": "^4.1.1",
-    "http-server": "^0.9.0",
-    "ncp": "^2.0.0"
-  },
-  "dependencies": {
-    "systemjs": "^0.20.12"
-  }
+	"name": "forms",
+	"version": "1.0.0",
+	"description": "Create, layout and validate HTML5 forms",
+	"main": "src/index.html",
+	"scripts": {
+		"test": "test",
+		"lint": "eslint src/modules/**",
+		"build": "babel src -d dist",
+		"babel": "babel src -d dist --source-maps --watch",
+		"install": "node install.js && yarn run babel",
+		"develop": "yarn run lint && yarn run install | http-server dist -a localhost -p 9000 --ssl --cors -s"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/dutchcelt/forms.git"
+	},
+	"keywords": [
+		"Forms",
+		"HTML5",
+		"validaiton",
+		"layout",
+		"templating"
+	],
+	"author": "C. Egor Kloos",
+	"license": "SEE LICENSE IN LICENSE.md",
+	"bugs": {
+		"url": "https://github.com/dutchcelt/forms/issues"
+	},
+	"homepage": "https://github.com/dutchcelt/forms#readme",
+	"devDependencies": {
+		"babel-cli": "^6.24.1",
+		"babel-eslint": "^7.2.3",
+		"babel-plugin-transform-es2015-modules-systemjs": "^6.24.1",
+		"babel-preset-env": "^1.4.0",
+		"babel-preset-es2015": "^6.24.1",
+		"babili": "^0.0.12",
+		"eslint": "^3.19.0",
+		"eslint-plugin-babel": "^4.1.1",
+		"http-server": "^0.9.0",
+		"ncp": "^2.0.0"
+	},
+	"dependencies": {
+		"systemjs": "^0.20.12"
+	}
 }

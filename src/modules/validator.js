@@ -16,7 +16,6 @@ export default {
 		this.form.addEventListener('blur', this);
 		this.form.addEventListener('change', this);
 		this.form.addEventListener('submit', this);
-		this.form.addEventListener('focus', this, true);
 
 		if (config.observe) this.liveMap();
 	},
@@ -73,15 +72,14 @@ export default {
 	},
 
 	liveMap() {
-		let numberOfElements = [...this.elementsMap].length;
-		const observer = new MutationObserver(() => {
-			if (numberOfElements !== [...this.elementsMap].length) {
-				throttle(() => {
-					this.elementsMap = createMap(this.form);
-					numberOfElements = [...this.elementsMap].length;
-				}, 300, this);
+		let numberOfElements = this.form.elements.length;
+		const newMap = () => {
+			if (numberOfElements !== this.form.elements.length){
+				this.elementsMap = createMap( this.form );
+				numberOfElements = this.form.elements.length;
 			}
-		});
+		};
+		const observer = new MutationObserver(throttle(newMap));
 		observer.observe(this.form, {childList: true, subtree: true});
 	}
 

@@ -10,7 +10,7 @@ import validator from './validator.js';
 export default (form) => {
 	const validaitonObject = Object.assign(
 		Object.create(validator),
-		{form, config}
+		{ form, config }
 	);
 	return validaitonObject.init();
 };

@@ -9,7 +9,7 @@ export default elem => {
 	const allowedExtensions = elem.dataset.allowedExtensions;
 	const maxSize = elem.dataset.maxSize;
 	const uploadSize = [...files].reduce((a, f) => a + Math.ceil(f.size / 1024), 0);
-	const validSize = maxSize ? uploadSize <= parseInt(maxSize) : true;
+	const validSize = maxSize ? uploadSize <= parseInt(maxSize, 10) : true;
 	const validType = allowedExtensions ? [...files].every(f => (new RegExp(f.name.split(/\./).pop(), 'gi')).test(allowedExtensions)) : true;
 	const isValid = [validSize, validType, elem.validity.valid].every(v => v);
 
@@ -20,4 +20,4 @@ export default elem => {
 		elem.setCustomValidity('error');
 	}
 	return isValid;
-}
+};

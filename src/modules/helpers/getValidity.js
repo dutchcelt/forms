@@ -6,4 +6,5 @@ export default (elem) => {
 	validity[0] = getFileValidity(elem);
 
 	return [...validity, elem.validity.valid].every(v => v);
-}
+};
+

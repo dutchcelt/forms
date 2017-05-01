@@ -3,5 +3,5 @@ export default fieldData => {
 	const p = messageElement || document.createElement('p');
 	p.innerHTML = fieldData.errors || '';
 	!messageElement && fieldData.parent.appendChild(p);
-}
+};
 

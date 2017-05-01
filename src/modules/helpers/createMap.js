@@ -9,4 +9,4 @@ export default (form) => {
 		newMap.set(field, setObject(field));
 	});
 	return newMap;
-}
+};

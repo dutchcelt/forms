@@ -13,5 +13,5 @@ export default (field) => {
 		errors = errorTypes(elem),
 		parent = elem.closest(config.parentElementSelector);
 
-	return {key, value, valid, errors, parent};
-}
+	return { key, value, valid, errors, parent };
+};

@@ -51,14 +51,14 @@ export default {
 		return this.elementsMap.get(field);
 	},
 
-	setFormValidation(){
+	setFormValidation() {
 		this.isFormValid
 			? this.form.classList.remove(config.errorClass)
 			: this.form.classList.add(config.errorClass);
 		return this;
 	},
 
-	setFieldValidation(field){
+	setFieldValidation(field) {
 		const fieldData = this.updateMap(field);
 		const target = getElementFromField(field);
 		if (fieldData.valid) {
@@ -74,13 +74,13 @@ export default {
 	liveMap() {
 		let numberOfElements = this.form.elements.length;
 		const newMap = () => {
-			if (numberOfElements !== this.form.elements.length){
-				this.elementsMap = createMap( this.form );
+			if (numberOfElements !== this.form.elements.length) {
+				this.elementsMap = createMap(this.form);
 				numberOfElements = this.form.elements.length;
 			}
 		};
 		const observer = new MutationObserver(throttle(newMap));
-		observer.observe(this.form, {childList: true, subtree: true});
+		observer.observe(this.form, { childList: true, subtree: true });
 	}
 
 };

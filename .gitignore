@@ -13,6 +13,7 @@ node_modules
 # Optional npm cache directory
 .npm
 
-
+# ignore pem files
+*.pem
 
 dist

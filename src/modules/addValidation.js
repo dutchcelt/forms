@@ -4,7 +4,6 @@ import validator from './validator.js';
 /**
  * Add validation to a form
  * @param {Element} form
- * @param {object} settings
  * @returns {*}
  */
 export default (form) => {

@@ -6,13 +6,7 @@
 	"scripts": {
 		"test": "test",
 		"lint": "eslint src/modules/**",
-		"systemjs": "cpx 'node_modules/systemjs/dist/*.*' dist/systemjs",
-		"build": "yarn run systemjs && cpx 'src/**/*.css' dist && cpx 'src/*.*' dist && babel src -d dist",
-		"devbuild": "cpx 'src/**/*.css' dist -w -u | cpx 'src/*.*' dist -w -u | babel src -d dist --source-maps --watch",
-		"serve": "http-server dist -a localhost -p 9000 --ssl --cors -s",
-		"open": "opn https://localhost:9000 -- 'Google Chrome'",
-		"reload": "wait-run -p 'dist/**/*.*' -- yarn run open",
-		"develop": "yarn run systemjs && yarn run lint && yarn run devbuild | yarn run serve | yarn run opem"
+		"build": "yarn run lint && cpx 'src/**/*.css' dist && babel src/modules -d dist/modules"
 	},
 	"repository": {
 		"type": "git",
@@ -40,14 +34,9 @@
 		"babili": "^0.0.12",
 		"cpx": "^1.5.0",
 		"eslint": "^3.19.0",
-		"eslint-plugin-babel": "^4.1.1",
-		"http-server": "^0.9.0",
-		"opn-cli": "^3.1.0",
-		"wait-run": "^1.2.0"
+		"eslint-plugin-babel": "^4.1.1"
 	},
-	"dependencies": {
-		"systemjs": "^0.20.12"
-	},
+	"dependencies": {},
 	"resolutions": {
 		"glob": "7.1.1",
 		"lodash": "4.17.4",

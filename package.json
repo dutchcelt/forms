@@ -6,7 +6,7 @@
 	"scripts": {
 		"test": "ava",
 		"lint": "eslint src/modules/**",
-		"build": "yarn run lint && cpx 'src/**/*.css' dist && babel src/modules -d dist/modules"
+		"build": "yarn test && yarn run lint && cpx 'src/**/*.css' dist && babel src/modules -d dist/modules"
 	},
 	"repository": {
 		"type": "git",

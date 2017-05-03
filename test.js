@@ -22,6 +22,7 @@ const radios = [
 	makeElm('input', 'type:radio','name:radio','id:radio2','value:2'),
 	makeElm('input', 'type:radio','name:radio','id:radio3','value:3')
 ];
+
 const getKeyJS = loader.import('./src/modules/helpers/getKey.js');
 const getValueJS = loader.import('./src/modules/helpers/getValue.js');
 

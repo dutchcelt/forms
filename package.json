@@ -8,11 +8,6 @@
 		"lint": "eslint src/modules/**",
 		"build": "yarn run lint && cpx 'src/**/*.css' dist && babel src/modules -d dist/modules"
 	},
-	"ava": {
-		"require": [
-			"./test/helpers/setup-browser-env.js"
-		]
-	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/dutchcelt/forms.git"
@@ -41,7 +36,9 @@
 		"browser-env": "^2.0.30",
 		"cpx": "^1.5.0",
 		"eslint": "^3.19.0",
-		"eslint-plugin-babel": "^4.1.1"
+		"eslint-plugin-babel": "^4.1.1",
+		"node-es-module-loader": "^0.3.8",
+		"window": "^3.1.6"
 	},
 	"dependencies": {},
 	"resolutions": {

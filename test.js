@@ -4,10 +4,12 @@ const Loader = require('node-es-module-loader');
 const loader = new Loader();
 const getKeyJS = loader.import('./src/modules/helpers/getKey.js');
 const getValueJS = loader.import('./src/modules/helpers/getValue.js');
+const getElementFromFieldJS = loader.import('./src/modules/helpers/getElementFromField.js');
+const creatMapJS = loader.import('./src/modules/helpers/createMap.js'); // doesn't work :(
 
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
-const { document } = (new JSDOM(`<!DOCTYPE html>`)).window;
+const { document } = (new JSDOM(`<!DOCTYPE html><html><body></body></html>`)).window;
 
 const form = document.createElement('form');
 form.name = "test";
@@ -29,7 +31,7 @@ function makeElm(domStringArray){
 // RADIOS
 const radios = makeElm([
 	`<input type="radio" name="radio" id="radio0" value="0"/>`,
-	`<input type="radio" name="radio" id="radio1" value="1" checked/>`,
+	`<input type="radio" name="radio" id="radio1" value="1" checked="checked"/>`,
 	`<input type="radio" name="radio" id="radio2" value="2"/>`
 ]);
 
@@ -39,8 +41,15 @@ test('Get radio', async t => {
 });
 test('Get Radio Value', async t => {
 	const getValue = await getValueJS;
-	t.is(getValue.default(radios[1]), '1');
+	t.is(getValue.default(radios[2]), '2');
 });
+
+test('Get chekced element from Radios', async t => {
+	const getElementFromField = await getElementFromFieldJS;
+	const elem = getElementFromField.default(form.querySelectorAll('[name="radio"]'));
+	t.is(elem.checked, true);
+});
+
 
 
 // TEXT

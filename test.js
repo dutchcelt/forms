@@ -44,9 +44,9 @@ test('Get Radio Value', async t => {
 	t.is(getValue.default(radios[2]), '2');
 });
 
-test('Get chekced element from Radios', async t => {
+test('Get checked element from Radios', async t => {
 	const getElementFromField = await getElementFromFieldJS;
-	const elem = getElementFromField.default(form.querySelectorAll('[name="radio"]'));
+	const elem = getElementFromField.default(radios);
 	t.is(elem.checked, true);
 });
 
